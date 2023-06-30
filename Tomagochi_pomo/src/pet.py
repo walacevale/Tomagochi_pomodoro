@@ -1,6 +1,6 @@
 class Pet:
     def __init__(self):
-        self.name = 'Doutor bicho'
+        self.name = 'Doutor Bicho'
         self.hunger = 100
         self.happiness = 100
         self.energy = 0

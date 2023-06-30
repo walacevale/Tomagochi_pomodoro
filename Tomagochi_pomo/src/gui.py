@@ -13,6 +13,9 @@ class PetGUI:
         self.video_label = tk.Label(self.root)
         self.video_label.pack()
 
+        self.name_label = tk.Label(self.root, text=self.pet.name, font=("Arial", 16))
+        self.name_label.pack()
+
         self.hunger_label = tk.Label(self.root, text="Nível de Fome:")
         self.hunger_label.pack()
 
@@ -37,7 +40,7 @@ class PetGUI:
         self.play_button = tk.Button(self.root, text="Brincar", command=self.play_with_pet)
         self.play_button.pack()
 
-        self.clock_label = tk.Label(self.root, text="00:00")
+        self.clock_label = tk.Label(self.root, text="00:00", font=("Arial", 16))
         self.clock_label.pack()
 
         self.start_button = tk.Button(self.root, text="Iniciar", command=self.timer.start_timer)
