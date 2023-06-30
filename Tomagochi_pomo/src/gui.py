@@ -49,6 +49,9 @@ class PetGUI:
         self.stop_button = tk.Button(self.root, text="Parar", command=self.timer.stop_timer)
         self.stop_button.pack()
 
+        born_button = tk.Button(self.root, text="Nascer", command=self.play_born)
+        born_button.place(x=2, y=10)
+
         self.timer_running = False
         self.start_time = None
 
@@ -60,11 +63,17 @@ class PetGUI:
         self.pet.play()
         self.update_status()
 
+    def play_born(self):
+        self.pet.born()
+        self.update_status()
+
     def update_status(self):
         hunger, happiness, energy = self.pet.get_status()
         self.hunger_value.config(text=hunger)
         self.happiness_value.config(text=happiness)
         self.energy_value.config(text=energy)
+
+ 
 
     def run(self):
         self.root.mainloop()

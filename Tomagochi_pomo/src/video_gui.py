@@ -10,7 +10,7 @@ class VideoGUI:
         self.video_label = gui.video_label
         self.video_label.pack()
 
-        self.cap = cv2.VideoCapture('./imagens/Bichinho/cat_padrao.mp4')  # Coloque o caminho para o vídeo do seu bichinho aqui
+        self.cap = cv2.VideoCapture('C:/Users/walla/OneDrive - Universidade Federal do Ceará/Portfólio/Tomagochi_pomodoro/Tomagochi_pomo/src/imagens/Bichinho/cat_padrao.mp4')  # Coloque o caminho para o vídeo do seu bichinho aqui
 
         self.update_video()
 

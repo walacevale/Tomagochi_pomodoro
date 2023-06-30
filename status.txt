@@ -1,0 +1,3 @@
+Nivel de Fome: 100
+Humor: 100
+Energia: 0 
