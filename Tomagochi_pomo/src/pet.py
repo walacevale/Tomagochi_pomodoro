@@ -34,7 +34,7 @@ class StatusSaver:
         self.file_path = file_path
 
     def save_status(self, hunger, happiness, energy):
-        status_text = f"Nivel de Fome: {hunger}\nHumor: {happiness}\nEnergia: {energy} \n"
+        status_text = f"Nivel de Fome: {hunger}\n Humor: {happiness}\n Energia: {energy} \n"
 
         with open(self.file_path, "w") as file:
             file.write(status_text)
