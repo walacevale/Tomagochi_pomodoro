@@ -63,6 +63,7 @@ class PetGUI:
         self.pet.play()
         self.update_status()
 
+
     def play_born(self):
         self.pet.born()
         self.update_status()
