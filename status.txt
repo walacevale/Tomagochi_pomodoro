@@ -1,3 +1,4 @@
-Nivel de Fome: 130
- Humor: 120
- Energia: -50 
+Nivel de Fome: 50
+Humor: 50
+Energia: 0
+Nivel: 0

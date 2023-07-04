@@ -1,7 +1,7 @@
 import tkinter as tk
 from draw import ASCIIImages
 from pet import Pet
-
+from timer import Cronometro
 
 class Action:
 
@@ -10,6 +10,8 @@ class Action:
         self.janela = tk.Tk()
         self.pet = pet
         self.ASCIIImages = ASCIIImages
+        self.Cronometro = Cronometro
+
         self.janela.title("Tomagochi")
         self.janela.geometry("400x600")
         self.caixa_texto = tk.Text(self.janela, width=25, height=16, state='disabled')
@@ -44,26 +46,49 @@ class Action:
         self.play_button = tk.Button(self.janela, text="Brincar", command=self.play_with_pet)
         self.play_button.pack()
 
+        self.nivel_label = tk.Label(self.janela, text="Nivel:")
+        self.nivel_label.pack()
+
+        self.nivel_label = tk.Label(self.janela, text=self.pet.nivel)
+        self.nivel_label.pack()
+
     
     def feed_pet(self):
         self.pet.feed()
         self.update_status()
-        self.update_status()
-        self.caixa_texto.config(state='normal')
-        self.caixa_texto.insert(tk.END, self.ASCIIImages.gato_alimentar())
-        self.caixa_texto.insert(tk.END, "\n")
-        self.caixa_texto.config(state='disabled')
-        self.caixa_texto.see(tk.END)
-
+        if self.pet.hunger > 80  and self.pet.happiness > 80:
+            self.pet.nivel += 1
+            self.update_status()
+        if self.pet.nivel <= 50:
+            self.caixa_texto.config(state='normal')
+            self.caixa_texto.insert(tk.END, self.ASCIIImages.ovo())
+            self.caixa_texto.insert(tk.END, "\n")
+            self.caixa_texto.config(state='disabled')
+            self.caixa_texto.see(tk.END)
+        if self.pet.nivel > 50:
+            self.caixa_texto.config(state='normal')
+            self.caixa_texto.insert(tk.END, self.ASCIIImages.gato_alimentar())
+            self.caixa_texto.insert(tk.END, "\n")
+            self.caixa_texto.config(state='disabled')
+            self.caixa_texto.see(tk.END)
+       
 
     def play_with_pet(self):
         self.pet.play()
         self.update_status()
-        self.caixa_texto.config(state='normal')
-        self.caixa_texto.insert(tk.END, self.ASCIIImages.gato_brincando())
-        self.caixa_texto.insert(tk.END, "\n")
-        self.caixa_texto.config(state='disabled')
-        self.caixa_texto.see(tk.END)
+        if self.pet.nivel <= 10:
+            self.caixa_texto.config(state='normal')
+            self.caixa_texto.insert(tk.END, self.ASCIIImages.ovo())
+            self.caixa_texto.insert(tk.END, "\n")
+            self.caixa_texto.config(state='disabled')
+            self.caixa_texto.see(tk.END)
+        if self.pet.nivel > 10:
+            self.caixa_texto.config(state='normal')
+            self.caixa_texto.insert(tk.END, self.ASCIIImages.gato_lv1())
+            self.caixa_texto.insert(tk.END, "\n")
+            self.caixa_texto.config(state='disabled')
+            self.caixa_texto.see(tk.END)
+
 
 
     def play_born(self):
@@ -72,26 +97,11 @@ class Action:
         
 
     def update_status(self):
-        hunger, happiness, energy = self.pet.get_status()
+        hunger, happiness, energy, nivel = self.pet.get_status()
         self.hunger_value.config(text=hunger)
         self.happiness_value.config(text=happiness)
         self.energy_value.config(text=energy)
-
- 
-    
-    def exibir_ok(self):
-        self.caixa_texto.config(state='normal')
-        self.caixa_texto.insert(tk.END, self.ASCIIImages.ovo())
-        self.caixa_texto.insert(tk.END, "\n")
-        self.caixa_texto.config(state='disabled')
-        self.caixa_texto.see(tk.END)
-
-    def exibir_okk(self):
-        self.caixa_texto.config(state='normal')
-        self.caixa_texto.insert(tk.END, self.ASCIIImages.gato_lv2())
-        self.caixa_texto.insert(tk.END, "\n")
-        self.caixa_texto.config(state='disabled')
-        self.caixa_texto.see(tk.END)
+        self.nivel_label.config(text=nivel)
 
     def exibir_intro(self):
         self.caixa_texto.config(state='normal')
@@ -99,11 +109,3 @@ class Action:
         self.caixa_texto.insert(tk.END, "\n")
         self.caixa_texto.config(state='disabled')
         self.caixa_texto.see(tk.END)
-
-    def update_status(self):
-        hunger, happiness, energy = self.pet.get_status()
-        self.hunger_value.config(text=hunger)
-        self.happiness_value.config(text=happiness)
-        self.energy_value.config(text=energy)
-
-    #----buttons---#

@@ -4,6 +4,7 @@ class Pet:
         self.hunger = load_status[0]
         self.happiness = load_status[1]
         self.energy = load_status[2]
+        self.nivel = load_status[3]
 
     def feed(self):
         self.hunger += 30
@@ -47,8 +48,9 @@ class StatusSaver:
             hunger = int(status_lines[0].split(": ")[1])
             happiness = int(status_lines[1].split(": ")[1])
             energy = int(status_lines[2].split(": ")[1])
+            nivel = int(status_lines[3].split(": ")[1])
 
-            return hunger, happiness, energy
+            return hunger, happiness, energy, nivel
 
         except FileNotFoundError:
             return None

@@ -34,6 +34,8 @@ class PetGUI:
         self.energy_value = tk.Label(self.janela, text=self.pet.energy)
         self.energy_value.pack()
 
+ 
+
         self.feed_button = tk.Button(self.janela, text="Alimentar", command=self.feed_pet)
         self.feed_button.pack()
 
@@ -67,6 +69,11 @@ class PetGUI:
     def play_born(self):
         self.pet.born()
         self.update_status()
+
+    def play_nivel(self):
+        self.pet.born()
+        self.update_status()
+
 
     def update_status(self):
         hunger, happiness, energy = self.pet.get_status()

@@ -29,3 +29,22 @@ class VideoGUI:
 
     def run(self):
         self.janela.mainloop()
+    
+
+import time
+
+def barra_progresso(total, preenchido):
+    largura_total = 40
+    preenchido_percent = preenchido / total
+    preenchido_chars = int(largura_total * preenchido_percent)
+    vazio_chars = largura_total - preenchido_chars
+
+    barra = '#' * preenchido_chars + '-' * vazio_chars
+
+    print(f'[{barra}] {preenchido}/{total}')
+
+# Exemplo de uso
+total_progresso = 100
+for i in range(total_progresso + 1):
+    barra_progresso(total_progresso, i)
+    time.sleep(0.1)

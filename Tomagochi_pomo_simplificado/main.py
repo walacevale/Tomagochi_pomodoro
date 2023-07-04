@@ -8,15 +8,14 @@ from timer import Cronometro
 status_saver = StatusSaver("status.txt") 
 load_status = status_saver.load_status()
 
+
 pet = Pet(load_status)
 draw = ASCIIImages()
 action = Action(pet)
+cronometro = Cronometro(pet,action)
 
-# Criar uma instância do cronômetro
-cronometro = Cronometro()
-
-# Iniciar a interface do cronômetro
 cronometro.iniciar_interface()
+
 
 
 

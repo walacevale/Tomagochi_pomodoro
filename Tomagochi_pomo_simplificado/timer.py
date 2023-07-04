@@ -1,13 +1,17 @@
 import tkinter as tk
 import time
+from pet import Pet
 
 
 class Cronometro:
 
-    def __init__(self):
+    def __init__(self,pet, action):
         self.janela = tk.Tk()
+        self.pet = pet
+        self.action = action
         self.janela.title("Cronômetro")
         self.janela.geometry("200x100")
+         
 
         self.label_tempo = tk.Label(self.janela, text="00:00", font=("Arial", 24))
         self.label_tempo.pack(pady=10)
@@ -43,6 +47,10 @@ class Cronometro:
             self.label_tempo.configure(text=tempo_formatado)
             self.janela.after(1000, self.atualizar_cronometro)
 
+            if tempo_atual == 3:
+                self.pet.energy += 50
+                self.action.update_status()
+
     def resetar_cronometro(self):
         self.tempo_inicial = time.time()
         self.tempo_parado = 0
@@ -54,7 +62,9 @@ class Cronometro:
         minutos = int((tempo // 60) % 60)
         
         return f"{minutos:02d}:{segundos:02d}"
-
+    
     def iniciar_interface(self):
         self.janela.mainloop()
+
+
 
