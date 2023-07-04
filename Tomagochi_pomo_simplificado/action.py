@@ -5,7 +5,7 @@ from pet import Pet
 
 class Action:
 
-    def __init__(self, draw, pet):
+    def __init__(self, pet):
 
         self.janela = tk.Tk()
         self.pet = pet
@@ -44,14 +44,17 @@ class Action:
         self.play_button = tk.Button(self.janela, text="Brincar", command=self.play_with_pet)
         self.play_button.pack()
 
-        self.botao = tk.Button(self.janela, text="OK", command= self.exibir_ok)
-        self.botao.pack(side=tk.LEFT)
-
-
     
     def feed_pet(self):
         self.pet.feed()
         self.update_status()
+        self.update_status()
+        self.caixa_texto.config(state='normal')
+        self.caixa_texto.insert(tk.END, self.ASCIIImages.gato_alimentar())
+        self.caixa_texto.insert(tk.END, "\n")
+        self.caixa_texto.config(state='disabled')
+        self.caixa_texto.see(tk.END)
+
 
     def play_with_pet(self):
         self.pet.play()

@@ -132,3 +132,13 @@ class ASCIIImages:
     (___    _____)
         '--'
    """
+
+
+   def gato_alimentar():
+      return """
+  /\_/\  (
+ ( ^.^ ) _)
+   \"/  (
+ ( | | )
+(__d b__)
+   """
