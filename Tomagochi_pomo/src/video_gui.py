@@ -4,13 +4,13 @@ from PIL import Image, ImageTk
 
 class VideoGUI:
     def __init__(self, gui):
-        self.root = gui.root
-        self.root.title("Tomagochi - Vídeo")
+        self.janela = gui.janela
+        self.janela.title("Tomagochi - Vídeo")
         
         self.video_label = gui.video_label
         self.video_label.pack()
 
-        self.cap = cv2.VideoCapture('C:/Users/walla/OneDrive - Universidade Federal do Ceará/Portfólio/Tomagochi_pomodoro/Tomagochi_pomo/src/imagens/Bichinho/cat_padrao.mp4')  # Coloque o caminho para o vídeo do seu bichinho aqui
+        self.cap = cv2.VideoCapture('C:/Users/walla/OneDrive - Universidade Federal do Ceará/Portfólio/Tomagochi_pomodoro/Tomagochi_pomo/src/imagens/Bichinho/cat_padrao.mp4')  #% Coloque o caminho para o vídeo do seu bichinho aqui
         self.cap2 = cv2.VideoCapture('C:/Users/walla/OneDrive - Universidade Federal do Ceará/Portfólio/Tomagochi_pomodoro/Tomagochi_pomo/src/imagens/Bichinho/cat_brincar.mp4')
         self.update_video()
 
@@ -22,10 +22,10 @@ class VideoGUI:
             image = image.resize((300, 200), Image.ANTIALIAS)
             photo = ImageTk.PhotoImage(image)
             self.video_label.configure(image=photo)
-            self.video_label.image = photo  # Mantém a referência à imagem
+            self.video_label.image = photo # % Mantém a referência à imagem
         else:
-            self.cap.set(cv2.CAP_PROP_POS_FRAMES, 0)  # Volta para o início do vídeo se terminar
-        self.root.after(50, self.update_video)
+            self.cap.set(cv2.CAP_PROP_POS_FRAMES, 0)  #% Volta para o início do vídeo se terminar
+        self.janela.after(50, self.update_video)
 
     def run(self):
-        self.root.mainloop()
+        self.janela.mainloop()

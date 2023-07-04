@@ -14,7 +14,7 @@ class Timer:
         clock_text = f"{minutes:02d}:{seconds:02d}"
         self.gui.clock_label.config(text=clock_text)
         if self.running:
-            self.gui.root.after(1000, self.update_clock)
+            self.gui.janela.after(1000, self.update_clock)
 
     def start_timer(self):
         if not self.running:
