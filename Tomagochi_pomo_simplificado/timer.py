@@ -47,9 +47,10 @@ class Cronometro:
             self.label_tempo.configure(text=tempo_formatado)
             self.janela.after(1000, self.atualizar_cronometro)
 
-            if tempo_atual == 3:
+            if int(tempo_atual) == 3:
                 self.pet.energy += 50
                 self.action.update_status()
+                
 
     def resetar_cronometro(self):
         self.tempo_inicial = time.time()

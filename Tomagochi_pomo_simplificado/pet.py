@@ -1,17 +1,29 @@
 from random import randrange
+import numpy as np
 class Pet:
     def __init__(self, load_status):
+        
+        
         self.name = 'Doutor Bicho'
         self.hunger = load_status[0]
         self.happiness = load_status[1]
         self.energy = load_status[2]
         self.nivel = load_status[3]
+        self.lv_up_1 = 15
+        self.lv_up_2 = 30
+        self.limite_min = 0
+        self.limite_max = 100
+        
 
     def feed(self):
+        casualty = randrange(0,100)
         self.hunger += 10
-        self.energy -= 20
+        self.energy -= 10
+        if  casualty > 90:
+            self.casualty_update()        
 
     def play(self):
+        
         casualty = randrange(0,100)
         self.happiness += 10
         self.energy -= 30
@@ -24,13 +36,19 @@ class Pet:
         self.energy -= randrange(1, 5)*10
 
     def get_status(self):
-        return self.hunger, self.happiness, self.energy, self.nivel
+        self.hunger = np.clip(self.hunger, self.limite_min, self.limite_max)
+        self.happiness = np.clip(self.happiness, self.limite_min, self.limite_max)
+        self.energy = np.clip(self.energy, self.limite_min, self.limite_max*200)
+        self.nivel = np.clip(self.nivel, self.limite_min, self.limite_max)
+
+        return  self.hunger, self.happiness, self.energy, self.nivel
     
     def born(self):
         self.name = 'Doutor Bicho'
-        self.hunger = 100
-        self.happiness = 100
+        self.hunger = 50
+        self.happiness = 50
         self.energy = 0
+        self.nivel = 0
 
 class StatusSaver:
     def __init__(self, file_path):
@@ -60,3 +78,6 @@ class StatusSaver:
         except (IndexError, ValueError):
             print("Erro ao carregar o arquivo de status.")
             return None
+
+
+print(randrange(0,100))

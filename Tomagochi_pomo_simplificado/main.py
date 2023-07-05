@@ -18,5 +18,5 @@ cronometro.iniciar_interface()
 
 
 
-
+#status_saver.save_status(pet.hunger, pet.happiness, pet.energy, pet.nivel)
 action.janela.mainloop()

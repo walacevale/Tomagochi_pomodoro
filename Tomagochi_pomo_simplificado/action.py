@@ -3,6 +3,7 @@ from draw import ASCIIImages
 from pet import Pet
 from timer import Cronometro
 
+
 class Action:
 
     def __init__(self, pet):
@@ -52,6 +53,12 @@ class Action:
         self.nivel_label = tk.Label(self.janela, text=self.pet.nivel)
         self.nivel_label.pack()
 
+    def write_text(self, text):
+            self.caixa_texto.config(state='normal')
+            self.caixa_texto.insert(tk.END, text)
+            self.caixa_texto.insert(tk.END, "\n")
+            self.caixa_texto.config(state='disabled')
+            self.caixa_texto.see(tk.END)
     
     def feed_pet(self):
         self.pet.feed()
@@ -59,35 +66,24 @@ class Action:
         if self.pet.hunger > 80  and self.pet.happiness > 80:
             self.pet.nivel += 1
             self.update_status()
-        if self.pet.nivel <= 50:
-            self.caixa_texto.config(state='normal')
-            self.caixa_texto.insert(tk.END, self.ASCIIImages.ovo())
-            self.caixa_texto.insert(tk.END, "\n")
-            self.caixa_texto.config(state='disabled')
-            self.caixa_texto.see(tk.END)
-        if self.pet.nivel > 50:
-            self.caixa_texto.config(state='normal')
-            self.caixa_texto.insert(tk.END, self.ASCIIImages.gato_alimentar())
-            self.caixa_texto.insert(tk.END, "\n")
-            self.caixa_texto.config(state='disabled')
-            self.caixa_texto.see(tk.END)
+            self.write_text(ASCIIImages.lv_up())           
+        if self.pet.nivel <= self.pet.lv_up_1:
+            self.write_text(ASCIIImages.ovo())
+        if self.pet.nivel > self.pet.lv_up_2:
+           self.write_text(ASCIIImages.gato_lv1())
        
 
     def play_with_pet(self):
         self.pet.play()
         self.update_status()
-        if self.pet.nivel <= 10:
-            self.caixa_texto.config(state='normal')
-            self.caixa_texto.insert(tk.END, self.ASCIIImages.ovo())
-            self.caixa_texto.insert(tk.END, "\n")
-            self.caixa_texto.config(state='disabled')
-            self.caixa_texto.see(tk.END)
-        if self.pet.nivel > 10:
-            self.caixa_texto.config(state='normal')
-            self.caixa_texto.insert(tk.END, self.ASCIIImages.gato_lv1())
-            self.caixa_texto.insert(tk.END, "\n")
-            self.caixa_texto.config(state='disabled')
-            self.caixa_texto.see(tk.END)
+        if self.pet.hunger > 80  and self.pet.happiness > 80:
+            self.pet.nivel += 1
+            self.update_status()
+            self.write_text(ASCIIImages.lv_up())
+        if self.pet.nivel <= self.pet.lv_up_1:
+            self.write_text(ASCIIImages.ovo())
+        if self.pet.nivel > self.pet.lv_up_2:
+           self.write_text(ASCIIImages.gato_lv1())
 
 
 

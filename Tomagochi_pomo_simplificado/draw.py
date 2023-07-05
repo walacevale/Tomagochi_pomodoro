@@ -2,7 +2,6 @@ class ASCIIImages:
     
    def intro():
         return """
-
  ___________  
 |           | 
 | Tomadoro  | 
@@ -11,9 +10,19 @@ class ASCIIImages:
 |___________| 
 (\__/)||      
 (•ㅅ•) ||      
-/    づ        
+/    づ      
+   """
 
-   
+   def lv_up():
+        return """
+ ___________  
+|           | 
+| level up  | 
+| !!!       | 
+|___________| 
+(\__/)||      
+(•ㅅ•) ||      
+/    づ   
    """
     
    def ovo():
