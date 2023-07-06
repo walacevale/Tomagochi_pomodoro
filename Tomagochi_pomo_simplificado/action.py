@@ -47,6 +47,9 @@ class Action:
         self.play_button = tk.Button(self.janela, text="Brincar", command=self.play_with_pet)
         self.play_button.pack()
 
+        self.examiner_button = tk.Button(self.janela, text="cat examiner", command=self.cat_examiner)
+        self.examiner_button.pack()
+
         self.nivel_label = tk.Label(self.janela, text="Nivel:")
         self.nivel_label.pack()
 
@@ -63,28 +66,26 @@ class Action:
     def feed_pet(self):
         self.pet.feed()
         self.update_status()
-        if self.pet.hunger > 80  and self.pet.happiness > 80:
+        if self.pet.hunger >= 80  and self.pet.happiness >= 80:
             self.pet.nivel += 1
-            self.update_status()
-            self.write_text(ASCIIImages.lv_up())           
-        if self.pet.nivel <= self.pet.lv_up_1:
+            self.update_status()          
+        if self.pet.nivel < self.pet.lv_up_1:
             self.write_text(ASCIIImages.ovo())
-        if self.pet.nivel > self.pet.lv_up_2:
-           self.write_text(ASCIIImages.gato_lv1())
-       
+        if self.pet.nivel > self.pet.lv_up_1:
+            self.write_text(ASCIIImages.gato_alimentar())
+        self.evolution()
 
     def play_with_pet(self):
         self.pet.play()
         self.update_status()
-        if self.pet.hunger > 80  and self.pet.happiness > 80:
+        if self.pet.hunger >= 80  and self.pet.happiness >= 80:
             self.pet.nivel += 1
             self.update_status()
-            self.write_text(ASCIIImages.lv_up())
-        if self.pet.nivel <= self.pet.lv_up_1:
+        if self.pet.nivel < self.pet.lv_up_1:
             self.write_text(ASCIIImages.ovo())
-        if self.pet.nivel > self.pet.lv_up_2:
-           self.write_text(ASCIIImages.gato_lv1())
-
+        if self.pet.nivel > self.pet.lv_up_1:
+            self.write_text(ASCIIImages.gato_brincando())
+        self.evolution()
 
 
     def play_born(self):
@@ -105,3 +106,18 @@ class Action:
         self.caixa_texto.insert(tk.END, "\n")
         self.caixa_texto.config(state='disabled')
         self.caixa_texto.see(tk.END)
+
+    def evolution(self):
+        if self.pet.nivel == self.pet.lv_up_1:
+            self.write_text(ASCIIImages.lv_up()) 
+        if self.pet.nivel == self.pet.lv_up_2:
+            self.write_text(ASCIIImages.lv_up()) 
+
+    def cat_examiner(self):
+        if self.pet.nivel < self.pet.lv_up_1:
+            self.write_text(ASCIIImages.ovo()) 
+        if self.pet.nivel > self.pet.lv_up_1:
+            self.write_text(ASCIIImages.gato_lv1())
+        if self.pet.nivel > self.pet.lv_up_2:
+            self.write_text(ASCIIImages.gato_lv2()) 
+       

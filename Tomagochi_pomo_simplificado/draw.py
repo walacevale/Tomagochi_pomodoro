@@ -17,10 +17,10 @@ class ASCIIImages:
         return """
  ___________  
 |           | 
-| level up  | 
-| !!!       | 
+|Your kitten|
+|has evolved| 
 |___________| 
-(\__/)||      
+(\__/) ||      
 (•ㅅ•) ||      
 /    づ   
    """
