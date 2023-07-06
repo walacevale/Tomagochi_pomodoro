@@ -49,6 +49,8 @@ class Cronometro:
 
             if int(tempo_atual) == 3:
                 self.pet.energy += 50
+                self.action.feed_button.config(state=tk.NORMAL)
+                self.action.play_button.config(state=tk.NORMAL)
                 self.action.update_status()
                 
 

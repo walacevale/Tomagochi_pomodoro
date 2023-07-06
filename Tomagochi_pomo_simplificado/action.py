@@ -64,29 +64,36 @@ class Action:
             self.caixa_texto.see(tk.END)
     
     def feed_pet(self):
-        self.pet.feed()
-        self.update_status()
-        if self.pet.hunger >= 80  and self.pet.happiness >= 80:
-            self.pet.nivel += 1
-            self.update_status()          
-        if self.pet.nivel < self.pet.lv_up_1:
-            self.write_text(ASCIIImages.ovo())
-        if self.pet.nivel > self.pet.lv_up_1:
-            self.write_text(ASCIIImages.gato_alimentar())
-        self.evolution()
+        if self.pet.energy > 30:
+            self.feed_button.config(state=tk.NORMAL)
+            self.pet.feed()
+            self.update_status()
+            if self.pet.hunger >= 80  and self.pet.happiness >= 80:
+                self.pet.nivel += 1
+                self.update_status()          
+            if self.pet.nivel < self.pet.lv_up_1:
+                self.write_text(ASCIIImages.ovo())
+            if self.pet.nivel > self.pet.lv_up_1:
+                self.write_text(ASCIIImages.gato_alimentar())
+            
+        else:
+            self.feed_button.config(state=tk.DISABLED)
 
     def play_with_pet(self):
-        self.pet.play()
-        self.update_status()
-        if self.pet.hunger >= 80  and self.pet.happiness >= 80:
-            self.pet.nivel += 1
+        if self.pet.energy > 0:
+            self.play_button.config(state=tk.NORMAL)
+            self.pet.play()
             self.update_status()
-        if self.pet.nivel < self.pet.lv_up_1:
-            self.write_text(ASCIIImages.ovo())
-        if self.pet.nivel > self.pet.lv_up_1:
-            self.write_text(ASCIIImages.gato_brincando())
-        self.evolution()
-
+            if self.pet.hunger >= 80  and self.pet.happiness >= 80:
+                self.pet.nivel += 1
+                self.update_status()
+            if self.pet.nivel < self.pet.lv_up_1:
+                self.write_text(ASCIIImages.ovo())
+            if self.pet.nivel > self.pet.lv_up_1:
+                self.write_text(ASCIIImages.gato_brincando())
+            self.evolution()
+        else:
+            self.play_button.config(state=tk.DISABLED)
 
     def play_born(self):
         self.pet.born()
@@ -114,7 +121,7 @@ class Action:
             self.write_text(ASCIIImages.lv_up()) 
 
     def cat_examiner(self):
-        if self.pet.nivel < self.pet.lv_up_1:
+        if self.pet.nivel <= self.pet.lv_up_1:
             self.write_text(ASCIIImages.ovo()) 
         if self.pet.nivel > self.pet.lv_up_1:
             self.write_text(ASCIIImages.gato_lv1())

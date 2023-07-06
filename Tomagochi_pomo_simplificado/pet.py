@@ -31,9 +31,9 @@ class Pet:
             self.casualty_update()
 
     def casualty_update(self):
-        self.hunger -= randrange(1, 5)*10
-        self.happiness -= randrange(1, 5)*10
-        self.energy -= randrange(1, 5)*10
+        self.hunger -= randrange(1, 3)*10
+        self.happiness -= randrange(1, 3)*10
+        self.energy -= randrange(1, 3)*10
 
     def get_status(self):
         self.hunger = np.clip(self.hunger, self.limite_min, self.limite_max)
