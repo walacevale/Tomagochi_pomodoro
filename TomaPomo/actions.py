@@ -2,6 +2,8 @@ from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QLa
 from PyQt5.QtGui import QMovie
 from PyQt5.QtCore import Qt, QTimer
 from pet import *
+from cronometro import Cronometro
+
 
 
 class MainWindow(QWidget):
@@ -40,6 +42,9 @@ class MainWindow(QWidget):
         self.happiness_bar.setValue(self.pet.happiness)  # Converta para porcentagem
         self.setStyle(self.happiness_bar)
         layout.addWidget(self.happiness_bar)
+
+        self.cronometro = Cronometro() #cronometro
+        layout.addWidget(self.cronometro)
 
         self.setLayout(layout)
         
