@@ -1,11 +1,16 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QLabel, QSpinBox
-from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtCore import QTimer, Qt, pyqtSignal
+from pet import Pet
 
 class Cronometro(QWidget):
-    def __init__(self):
-        super().__init__()
+    time_finished = pyqtSignal()
 
+    def __init__(self, pet_instance):
+        super().__init__()
+        self.pet =  pet_instance
+        
         layout = QVBoxLayout(self)
+
 
         # Elementos do Cronômetro
         self.timer_spinbox = QSpinBox()
@@ -15,6 +20,8 @@ class Cronometro(QWidget):
         self.timer_spinbox.setStyleSheet("font-size: 24px;")
         layout.addWidget(self.timer_spinbox)
         layout.setAlignment(self.timer_spinbox, Qt.AlignHCenter)
+
+
 
         self.timer_display = QLabel("Escolha o tempo do seu Pomodoro!!")
         self.timer_display.setStyleSheet("font-size: 16px;")
@@ -79,10 +86,19 @@ class Cronometro(QWidget):
         self.timer_display.setText("Escolha o tempo do seu Pomodoro!!")
 
     def update_timer(self):
+        
         if self.time_left > 0:
             self.time_left -= 1
             mins, secs = divmod(self.time_left, 60)
             self.timer_display.setText(f"{mins:02}:{secs:02}")
+          
+            
+
         else:
+            print("Tempo esgotado!")
             self.timer.stop()
+            self.pet.increment_nivel()
+            self.time_finished.emit()
+
+
             # Você pode adicionar alguma ação a ser tomada quando o tempo acabar

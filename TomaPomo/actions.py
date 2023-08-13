@@ -44,11 +44,12 @@ class MainWindow(QWidget):
         self.setStyle(self.happiness_bar)
         layout.addWidget(self.happiness_bar)
 
-        self.level_label = QLabel("Nível:", self)
-        layout.addWidget(self.level_label)
-
-        self.cronometro = Cronometro() #cronometro
+        self.cronometro = Cronometro(self.pet) #cronometro
+        self.cronometro.time_finished.connect(self.update_level)
         layout.addWidget(self.cronometro)
+
+        self.level_label = QLabel(f'Nível: {self.pet.nivel}')
+        layout.addWidget(self.level_label)
 
         self.setLayout(layout)
         
@@ -70,6 +71,7 @@ class MainWindow(QWidget):
         self.movie.start()
         QTimer.singleShot(8000, self.resetar) # alimentar por 5 segundos
 
+
     def resetar(self):
         self.movie.stop()
         self.movie = QMovie("./TomaPomo\image\padrao.gif")
@@ -79,6 +81,12 @@ class MainWindow(QWidget):
     def update_status(self):
         self.fome_bar.setValue(self.pet.hunger)
         self.happiness_bar.setValue(self.pet.happiness)
+
+
+    def update_level(self):
+        print(f"Atualizando nível para: {self.pet.nivel}")
+        self.level_label.setText(f'Nível: {self.pet.nivel}')      
+        
 
     def setStyle(self, bar):
         bar.setStyleSheet("QProgressBar"
