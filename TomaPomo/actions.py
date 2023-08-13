@@ -32,9 +32,10 @@ class MainWindow(QWidget):
         layout.addWidget(self.btn_alimentar)
 
         self.fome_bar = QProgressBar(self)
+        self.fome_bar.setFixedSize(200, 30)
         self.fome_bar.setAlignment(Qt.AlignCenter)
         self.fome_bar.setValue(self.pet.hunger)  # Converta para porcentagem
-        self.setStyle(self.fome_bar)
+        self.setStyle(self.fome_bar)        
         layout.addWidget(self.fome_bar)
 
         self.happiness_bar = QProgressBar(self)
@@ -42,6 +43,9 @@ class MainWindow(QWidget):
         self.happiness_bar.setValue(self.pet.happiness)  # Converta para porcentagem
         self.setStyle(self.happiness_bar)
         layout.addWidget(self.happiness_bar)
+
+        self.level_label = QLabel("Nível:", self)
+        layout.addWidget(self.level_label)
 
         self.cronometro = Cronometro() #cronometro
         layout.addWidget(self.cronometro)
@@ -55,7 +59,7 @@ class MainWindow(QWidget):
         self.movie = QMovie("./TomaPomo\image/brincando.gif")
         self.movie_screen.setMovie(self.movie)
         self.movie.start()
-        QTimer.singleShot(5000, self.resetar) # brincar por 5 segundos
+        QTimer.singleShot(8000, self.resetar) # brincar por 5 segundos
 
     def alimentar(self):
         self.pet.feed()
@@ -64,7 +68,7 @@ class MainWindow(QWidget):
         self.movie = QMovie("./TomaPomo\image\comendo.gif")
         self.movie_screen.setMovie(self.movie)
         self.movie.start()
-        QTimer.singleShot(5000, self.resetar) # alimentar por 5 segundos
+        QTimer.singleShot(8000, self.resetar) # alimentar por 5 segundos
 
     def resetar(self):
         self.movie.stop()
