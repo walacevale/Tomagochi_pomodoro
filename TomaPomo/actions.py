@@ -7,10 +7,10 @@ from cronometro import Cronometro
 
 
 class MainWindow(QWidget):
-    def __init__(self,pet):
+    def __init__(self,pet_instance):
         super(MainWindow, self).__init__()
         layout = QVBoxLayout()
-        self.pet = pet()
+        self.pet = pet_instance
 
         self.movie_screen = QLabel()
         self.movie = QMovie("normal.gif")
@@ -45,7 +45,7 @@ class MainWindow(QWidget):
         layout.addWidget(self.happiness_bar)
 
         self.cronometro = Cronometro(self.pet) #cronometro
-        self.cronometro.time_finished.connect(self.update_level)
+        self.cronometro.time_finished.connect(self.update_status)
         layout.addWidget(self.cronometro)
 
         self.level_label = QLabel(f'Nível: {self.pet.nivel}')
@@ -81,11 +81,7 @@ class MainWindow(QWidget):
     def update_status(self):
         self.fome_bar.setValue(self.pet.hunger)
         self.happiness_bar.setValue(self.pet.happiness)
-
-
-    def update_level(self):
-        print(f"Atualizando nível para: {self.pet.nivel}")
-        self.level_label.setText(f'Nível: {self.pet.nivel}')      
+        self.level_label.setText(f'Nível: {self.pet.nivel}')   
         
 
     def setStyle(self, bar):

@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QLabel, QSpinBox
 from PyQt5.QtCore import QTimer, Qt, pyqtSignal
-from pet import Pet
+
 
 class Cronometro(QWidget):
     time_finished = pyqtSignal()

@@ -1,4 +1,4 @@
 Nivel de Fome: 20
- Humor: 20
- Energia: 200
- Nivel: 14
+Humor: 20
+Energia: 200
+Nivel: 14
